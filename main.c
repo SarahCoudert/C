@@ -6,7 +6,7 @@
 /*   By: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/05 09:46:51 by scoudert          #+#    #+#             */
-/*   Updated: 2015/03/05 21:23:29 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/03/06 15:30:50 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int					rgb(int r, int g, int b)
 
 void		put_pixel_image(t_env *env, double x, double y, int color)
 {
-
+	
 }
 
 int			ft_color(double pos)
@@ -68,8 +68,6 @@ void	draw(void *mlx, void *win, t_rgb *rgb, t_env *env)
 	unsigned int	xz;
 	unsigned int	yz;
 	int				color;
-	//	x0 = scaled x coordinate of pixel (scaled to lie in the Mandelbrot X scale (-2.5, 1))
-	//		y0 = scaled y coordinate of pixel (scaled to lie in the Mandelbrot Y scale (-1, 1))
 	x = 0.0;
 	y = 0.0;
 
@@ -82,9 +80,9 @@ void	draw(void *mlx, void *win, t_rgb *rgb, t_env *env)
 		y = 2 * x * y + yz;
 		x = x_temp;
 		iteration = iteration + 1;
+		color = ft_color(x);
+		put_pixel_image(env, x, y, color);
 	}
-	color = ft_color(x);
-	put_pixel_image(env, x, y, color);
 }
 
 int		expose_hook(t_env *env)

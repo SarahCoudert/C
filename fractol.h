@@ -6,7 +6,7 @@
 /*   By: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/05 11:48:54 by scoudert          #+#    #+#             */
-/*   Updated: 2015/03/05 19:12:07 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/03/06 15:19:15 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,14 @@ typedef struct			s_env
 	void		*mlx;
 	void		*win;
 }						t_env;
+
+typedef struct			s_img
+{
+	int					width;
+	int					height;
+	int					bpp;
+	int					size_line;
+	int					endian;
+}						t_img;
 
 #endif
