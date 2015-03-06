@@ -6,15 +6,16 @@
 /*   By: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/05 11:48:54 by scoudert          #+#    #+#             */
-/*   Updated: 2015/03/06 15:19:15 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/03/06 17:17:41 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
-
-#include "libft/includes/libft.h"
-#include <stdlib.h>
+# include "libft/includes/libft.h"
+# include <stdlib.h>
+# define SCREEN_WIDTH		420
+# define SCREEN_HEIGHT		420
 
 typedef struct			s_rgb
 {

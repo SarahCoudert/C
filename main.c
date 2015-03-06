@@ -6,7 +6,7 @@
 /*   By: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/05 09:46:51 by scoudert          #+#    #+#             */
-/*   Updated: 2015/03/06 15:30:50 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/03/06 18:12:00 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <mlx.h>
 #include "fractol.h"
 
-int					rgb(int r, int g, int b)
+int					rgbtoint(int r, int g, int b)
 {
 	unsigned int	color;
 
@@ -26,7 +26,12 @@ int					rgb(int r, int g, int b)
 
 void		put_pixel_image(t_env *env, double x, double y, int color)
 {
-	
+	t_img	*img;
+	int		octets;
+	int		kl
+
+	img = env->img;
+	octets = img->bpp / 8;
 }
 
 int			ft_color(double pos)
@@ -42,19 +47,19 @@ int			ft_color(double pos)
 	fpart = p - (int)p;
 	a = (int)(fpart * 255);
 	if ((int)p == 0)
-		hex = rgb(0, a, 0);
+		hex = rgbtoint(0, a, 0);
 	else if ((int)p == 1)
-		hex = rgb(255 - a, 255, 0);
+		hex = rgbtoint(255 - a, 255, 0);
 	else if ((int)p == 2)
-		hex = rgb(0, 255, a);
+		hex = rgbtoint(0, 255, a);
 	else if ((int)p == 3)
-		hex = rgb(a, 255 - a, 255);
+		hex = rgbtoint(a, 255 - a, 255);
 	else if ((int)p == 4)
-		hex = rgb(a, 0, 255);
+		hex = rgbtoint(a, 0, 255);
 	else if ((int)p == 5)
-		hex = rgb(0, 0, 255 - a);
+		hex = rgbtoint(0, 0, 255 - a);
 	else
-		hex = rgb(0, 0, 0);
+		hex = rgbtoint(0, 0, 0);
 	return (hex);
 }
 
@@ -108,10 +113,10 @@ int		main(int ac, char **av)
 	rgb->r = 255;
 	rgb->g = 0;
 	rgb->b = 0;
-	rgb->color = rgbtoint(rgb);
+	rgb->color = rgbtoint(rgb->r, rgb->g, rgb->b);
 	env.rgb = rgb;
 	env.mlx = mlx_init();
-	env.win = mlx_new_window(env.mlx, 420, 420, "42");
+	env.win = mlx_new_window(env.mlx, SCREEN_WIDTH,SCREEN_HEIGHT , "42");
 	mlx_key_hook(env.win, key_hook, &env);
 	mlx_expose_hook(env.win, expose_hook, &env);
 	mlx_loop(env.mlx);
