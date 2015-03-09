@@ -6,7 +6,7 @@
 /*   By: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/05 09:46:51 by scoudert          #+#    #+#             */
-/*   Updated: 2015/03/06 18:12:00 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/03/09 18:05:55 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,11 @@ void		put_pixel_image(t_env *env, double x, double y, int color)
 {
 	t_img	*img;
 	int		octets;
-	int		kl
+	int		k;
 
 	img = env->img;
 	octets = img->bpp / 8;
+	env->img;
 }
 
 int			ft_color(double pos)
@@ -73,9 +74,9 @@ void	draw(void *mlx, void *win, t_rgb *rgb, t_env *env)
 	unsigned int	xz;
 	unsigned int	yz;
 	int				color;
+
 	x = 0.0;
 	y = 0.0;
-
 	x_temp = 0.0;
 	iteration = 0;
 	max_iteration = 1000;
@@ -116,7 +117,7 @@ int		main(int ac, char **av)
 	rgb->color = rgbtoint(rgb->r, rgb->g, rgb->b);
 	env.rgb = rgb;
 	env.mlx = mlx_init();
-	env.win = mlx_new_window(env.mlx, SCREEN_WIDTH,SCREEN_HEIGHT , "42");
+	env.win = mlx_new_window(env.mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "fractol");
 	mlx_key_hook(env.win, key_hook, &env);
 	mlx_expose_hook(env.win, expose_hook, &env);
 	mlx_loop(env.mlx);
