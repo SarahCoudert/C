@@ -6,7 +6,7 @@
 /*   By: scoudert <scoudert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/13 14:36:22 by scoudert          #+#    #+#             */
-/*   Updated: 2015/03/27 18:38:08 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/03/30 11:10:48 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int				wrong_value(char *s)
 		if (ft_isdigit(s[i]) == 0 && s[i] != '-' && s[i] != ',' &&
 			(s[i] != '0' && (s[i + 1] != 'X' || s[i + 1] != 'x')) &&
 			((s[i] != 'x' || s[i] != 'X') && s[i - 1] != '0')
-			&& ft_hexatodeci(s) == 42)
+			&& ft_hexatodeci(s) == -42)
 		{
 			ft_putstr_fd("Error : Wrong value \"", 2);
 			ft_putchar_fd(s[i], 2);
