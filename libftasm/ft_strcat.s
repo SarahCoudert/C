@@ -21,4 +21,5 @@ while2:
 	jmp while2
 
 end:
+	mov byte[rdi], 0
 	ret
