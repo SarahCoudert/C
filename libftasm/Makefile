@@ -1,9 +1,16 @@
+NAME = libfts.a
 
 CC = gcc
 
-NASM_PATH = nasm
+FLAGS = -Wall -Werror -Wextra
 
-SRC = 	ft_isalpha.s \
+INCLUDES = -I ./includes/
+
+SRC_D = ./srcs/
+
+OBJS_D = ./objs/
+
+SRCS = 	ft_isalpha.s \
 		ft_isdigit.s \
 		ft_isalnum.s \
 		ft_isascii.s \
@@ -11,26 +18,35 @@ SRC = 	ft_isalpha.s \
 		ft_toupper.s \
 		ft_bzero.s \
 		ft_strcat.s \
-		ft_puts.s
+		ft_puts.s \
+		ft_strlen.s \
+		ft_memset.s \
+		ft_memcpy.s \
+		ft_strdup.s \
+		ft_isprint.s
 
-OBJ = $(SRC:.s=.o)
+OBJS = $(SRCS:.s=.o)
 
-MAIN = main.c
+SRC:=$(addprefix $(SRC_D), $(SRCS))
+OBJ:=$(addprefix $(OBJS_D), $(OBJS))
 
-EXE = test
+all: $(NAME)
 
-CFLAGS = -Wall -Werror -Wextra
+$(NAME): $(OBJ)
+	ar rc $(NAME) $(OBJ)
+	@ranlib $(NAME)
 
-all : $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) $(MAIN) -o $(EXE)
+$(OBJS_D)%.o: $(SRC_D)%.s
+	@mkdir -p $(OBJS_D)
+	nasm -f macho64 $< -o $@
 
-%.o: %.s
-	$(NASM_PATH) -f macho64 $< -o $@
+debug:
+	$(CC) $(FLAGS) -c main.c $(INCLUDES) -o main.o
+	ld main.o -L. -lfts -macosx_version_min 10.8 -lSystem -o test
 
-fclean : clean
-	rm $(EXE)
+clean:
+	@rm -rf $(OBJS_D)
 
-clean :
-	rm $(OBJ)
-
-re : fclean all
+fclean: clean
+	@rm -f $(NAME)
+re: fclean all

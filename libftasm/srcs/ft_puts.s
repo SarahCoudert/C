@@ -1,11 +1,14 @@
 
+section .data
+	msg db "(null)", 10
+
 section .text
 	global _ft_puts
 
 _ft_puts:
 	xor r9, r9
-;	cmp rdi, 0
-;	je  end_null
+	cmp rdi, 0
+	je  end_null
 
 len:
 	cmp	byte[rdi + r9], 0
@@ -19,6 +22,13 @@ print:
 	mov rdi, 1
 	mov rdx, r9
 	syscall
+
+newline:
+	mov rax, 0x2000004
+	lea rsi, [rel msg + 6]
+	mov rdi, 1
+	mov rdx, 1
+	syscall
 	jmp end
 
 end_null:
@@ -29,13 +39,9 @@ end_null:
 	syscall
 
 end:
-	mov rax, 0x2000004
-	mov rdi, 1
-	mov byte[rsi], 10
-	mov rdx, 1
-	syscall
+	;mov rax, 0x2000004
+	;mov rdi, 1
+	;mov byte[rsi], 10
+	;mov rdx, 1
+	;?syscall
 	ret
-
-
-;section .data
-;	msg db "(null)"
