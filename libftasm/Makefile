@@ -23,7 +23,8 @@ SRCS = 	ft_isalpha.s \
 		ft_memset.s \
 		ft_memcpy.s \
 		ft_strdup.s \
-		ft_isprint.s
+		ft_isprint.s \
+		ft_cat.s
 
 OBJS = $(SRCS:.s=.o)
 

@@ -1,7 +1,3 @@
-# include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h>
-#include <string.h>
 #include "libfts.h"
 
 char	*fill_string(char *s, int l)
@@ -161,8 +157,24 @@ void	test_strdup(char *name, int len)
 	printf("\033[36m[ft_%s] -> \033[32m[OK]\033[00m\n", name);
 }
 
-int		main(void)
+void	test_cat(char *name)
 {
+	int			file;
+
+	file = open(name, O_RDONLY);
+	ft_cat(file);
+	close(file);
+}
+
+int		main(int ac, char **av)
+{
+	ft_puts("");
+	if (ac == 2)
+	{
+		test_cat(av[1]);
+	}
+	else
+	{
 	ft_puts("\033[33m\n/!\\Change test_is last value from '0' to '1'\ndirectly in main if you want to see tests details./!\\\n\033[00m");
 	test_is(isdigit, ft_isdigit, "isdigit", 0);
 	test_is(isalnum, ft_isalnum, "isalnum", 0);
@@ -177,6 +189,7 @@ int		main(void)
 	test_memset(ft_memset, "memset", 10);
 	test_memcpy("memcpy", 26);
 	test_strdup("strdup", 10);
+	}
 	ft_puts("");
 	return (0);
 }

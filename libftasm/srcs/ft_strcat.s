@@ -2,6 +2,7 @@ section .text
 	global _ft_strcat
 
 _ft_strcat:
+	push rsi
 	mov rax, rdi
 	jmp while1
 
@@ -22,4 +23,5 @@ while2:
 
 end:
 	mov byte[rdi], 0
+	pop rsi
 	ret

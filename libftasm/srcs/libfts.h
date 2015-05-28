@@ -13,6 +13,11 @@
 #ifndef LIBFTS_H
 # define LIBFTS_H
 # include <stdlib.h>
+# include <unistd.h>
+#include <fcntl.h>
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
 
 void	*ft_memset(void *b, int c, size_t len);
 int		ft_isdigit(int c);
@@ -27,5 +32,6 @@ void	ft_puts(char *s);
 size_t	ft_strlen(char *s);
 void	*ft_memcpy(void *dst, void *src, size_t n);
 char	*ft_strdup(char *s1);
+void	ft_cat(int fd);
 
 #endif

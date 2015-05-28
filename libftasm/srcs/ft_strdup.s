@@ -4,6 +4,7 @@ section .text
 	extern _ft_strlen
 
 _ft_strdup:
+	enter 0, 0
 	push rdi			;met la chaine dans la stack
 	call _ft_strlen		;met rax a la taille de rdi
 	mov rcx, rax 		;met la taille dans rcx
@@ -19,4 +20,5 @@ _ft_strdup:
 	repne movsb			;on copie la string
 
 end:
+	leave
 	ret 				;on se casse
