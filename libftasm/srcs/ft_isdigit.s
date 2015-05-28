@@ -1,6 +1,5 @@
-global _ft_isdigit
-
 section .text
+	global _ft_isdigit
 
 _ft_isdigit:
 	push rdi

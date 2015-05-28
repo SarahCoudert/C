@@ -1,4 +1,3 @@
-
 section .data
 	msg db "(null)", 10
 

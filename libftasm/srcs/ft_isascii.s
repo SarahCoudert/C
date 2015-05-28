@@ -1,6 +1,5 @@
-global _ft_isascii
-
 section .text
+	global _ft_isascii
 
 _ft_isascii:
 	push rdi
