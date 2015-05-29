@@ -4,7 +4,7 @@ CC = gcc
 
 FLAGS = -Wall -Werror -Wextra
 
-INCLUDES = -I ./includes/
+INCLUDES = -I ./includes/ -I ./srcs/
 
 SRC_D = ./srcs/
 
