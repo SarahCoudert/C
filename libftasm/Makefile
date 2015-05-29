@@ -20,6 +20,7 @@ SRCS = 	ft_isalpha.s \
 		ft_strcat.s \
 		ft_puts.s \
 		ft_strlen.s \
+		ft_memalloc.s \
 		ft_memset.s \
 		ft_memcpy.s \
 		ft_strdup.s \

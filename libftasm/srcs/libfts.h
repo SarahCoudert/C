@@ -33,5 +33,6 @@ size_t	ft_strlen(char *s);
 void	*ft_memcpy(void *dst, void *src, size_t n);
 char	*ft_strdup(char *s1);
 void	ft_cat(int fd);
+void	*ft_memalloc(int size);
 
 #endif
