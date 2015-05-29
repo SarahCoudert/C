@@ -13,7 +13,7 @@ section .text
 _ft_cat:
 	push rdi												;-> push fd
 	cmp rdi, 0
-	jle end
+	jl end
 
 read:
 	pop rdi 												; <- pop fd

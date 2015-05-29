@@ -20,12 +20,15 @@ SRCS = 	ft_isalpha.s \
 		ft_strcat.s \
 		ft_puts.s \
 		ft_strlen.s \
-		ft_memalloc.s \
 		ft_memset.s \
 		ft_memcpy.s \
 		ft_strdup.s \
 		ft_isprint.s \
-		ft_cat.s
+		ft_cat.s \
+		ft_isxdigit.s \
+		ft_strnew.s \
+		ft_islower.s \
+		ft_isupper.s
 
 OBJS = $(SRCS:.s=.o)
 

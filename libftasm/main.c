@@ -7,8 +7,7 @@ char	*fill_string(char *s, int l)
 	int	j;
 
 	j = 0;
-	if (s == NULL)
-		s = (char*)ft_memalloc(l);
+	s = (char*)malloc(l);
 	i = 0;
 	while (i < 26 && i < l)
 	{
@@ -34,7 +33,7 @@ void		test_is(int (*is)(int), int (*ft_is)(int), char *name, int d)
 	printf("\n\033[36mTest: [ft_%s] with value from -50 to 150\033[00m\n", name);
 	while (i < 150)
 	{
-		if (ft_is(i) != is(i))
+		if ((ft_is(i) != 0) != (is(i) != 0))
 		{
 			printf("\033[31mError: [%d]\n    Return: %s[%d] <> ft_%s[%d]\033[00m\n", i, name, is(i), name, ft_is(i));
 			j++;
@@ -49,16 +48,21 @@ void		test_is(int (*is)(int), int (*ft_is)(int), char *name, int d)
 		printf("\033[36m[%s] -> \033[31m[FAIL]\033[00m\n", name);
 }
 
-void	test_bzero(char *(*bz)(char*, int), char *name, int l)
+void	test_bzero(char *(*bz)(char*, int), char *(*str)(int), char *name, int l)
 {
 	char	*s;
 	int		i;
 
 	s = NULL;
 	i = 0;
-	s = (char*)malloc(20);
 	printf("\n\033[36mTest: [ft_%s] : [%s]\033[00m\n", name, s);
-	s = (*bz)(s, l);
+	if ((*str) == NULL)
+	{
+		s = (char*)malloc(20);
+		s = (*bz)(s, l);
+	}
+	else
+		s = (*str)(l);
 	while (i < l)
 	{
 		if (s[i] != '\0')
@@ -161,9 +165,15 @@ void	test_bonus()
 {
 	ft_puts("\033[36mTest: [ft_memalloc]\033[00m");
 	ft_puts("\033[33mWe test our ft_memalloc function with the strdup, strcat, memcpy, memset etc. functions.\n\n\033[00m");
-	ft_puts("\033[36mTest: [ft_isxdigit]\033[00m");
-	ft_puts("\033[33mThis function test if you send it an hexadecimal character ('0' to '9, 'a to 'f' and 'A' to 'F')\033[00m\n");
-	printf("\033[33m\033[00m\n");
+	ft_puts("\033[33mft_isxdigit function test if you send it an hexadecimal character ('0' to '9, 'a to 'f' and 'A' to 'F')\033[00m");
+	test_is(isxdigit, ft_isxdigit, "isxdigit", 0);
+	ft_puts("\033[33mft_islower function test if you send it a lower charracter ('a' to 'z')\033[00m");
+	test_is(islower, ft_islower, "islower", 0);
+	ft_puts("\033[33mft_isupper function test if you send it an upper charracter ('A' to 'Z')\033[00m");
+	test_is(isupper, ft_isupper, "isupper", 0);
+	ft_puts("\033[33m\nThe ft_strnew function create a string fill with '\\0'\033[00m");
+	test_bzero(NULL, ft_strnew, "strnew", 10);
+
 }
 
 void	test_cat_and_bonus(char *name)
@@ -173,7 +183,7 @@ void	test_cat_and_bonus(char *name)
 	if (name[0] == '1' && name[1] == '\0')
 	{
 		ft_puts("Okay, I'm waiting for you to write something :");
-		file = 1;
+		file = 0;
 	}
 	else if (name[0] == '0' && name[1] == '\0')
 	{
@@ -206,7 +216,7 @@ int		main(int ac, char **av)
 		test_puts(ft_puts, "ft_puts");
 		test_strlen(ft_strlen, "strlen", 26);
 		test_memset(ft_memset, "memset", 10);
-		test_bzero(ft_bzero, "bzero", 10);
+		test_bzero(ft_bzero, NULL, "bzero", 10);
 		test_memcpy("memcpy", 26);
 		test_strdup("strdup", 10);
 		ft_puts("\033[33m\n/!\\ If you want to test the ft_cat function, send to your executable the name of a file./!\\\n\t\t/!\\To test the keyboard input, send '1' /!\\\n\033[00m");
